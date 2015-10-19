@@ -17,6 +17,10 @@ def q(i, j, h):
     y = j * h -1
     return 2 * (2 - x**2 - y**2)
 
+def una_iteracion(phi, N_pasos, h, w=1.):
+    for i in range(1, N_pasos-1):
+        for j in range(1, N_pasos-1):
+            phi[i, j] = (1 - w) * phi[i, j] + w / 4 * (phi[i+1,j] + phi[i-1, j] + phi[i, j+1] + phi[i, j-1] + h**2 * q(i, j, h))
 
 # Main
 
@@ -25,15 +29,11 @@ def q(i, j, h):
 Lx = Ly = 2
 N_pasos = 5
 h = Lx / (N_pasos -1)
-w = 1.0
 
 phi = np.zeros((N_pasos, N_pasos))
 
 # iteracion
-for i in range(1, N_pasos-1):
-    for j in range(1, N_pasos-1):
-        phi[i, j] = (1 - w) * phi[i, j] + w / 4 * (phi[i+1,j] + phi[i-1, j] + phi[i, j+1] + phi[i, j-1] + h**2 * q(i, j, h))
-
+una_iteracion(phi, N_pasos, h, w=1.)
 
 muestra_phi(phi)
 
