@@ -8,6 +8,10 @@ Descripcion
 
 import numpy as np
 
+def muestra_phi(phi):
+    print(phi[::-1,:])
+
+
 # Main
 
 # Setup
@@ -18,4 +22,6 @@ h = Lx / (N_pasos -1)
 
 phi = np.zeros((N_pasos, N_pasos))
 
-print(phi)
+phi[0,0] =1
+muestra_phi(phi)
+
