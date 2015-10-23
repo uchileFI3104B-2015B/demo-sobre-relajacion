@@ -53,10 +53,26 @@ phi_next = np.zeros((N_pasos, N_pasos))
 # iteracion
 una_iteracion(phi, phi_next, N_pasos, h, w=1.)
 counter = 1
-while counter < 800 and no_ha_convergido(phi, phi_next, tolerancia=1e-8):
+while counter < 800 and no_ha_convergido(phi, phi_next, tolerancia=1e-7):
     phi = phi_next.copy()
     una_iteracion(phi, phi_next, N_pasos, h, w=0.8)
     counter += 1
 
 print("counter = {}".format(counter))
 print(phi[(N_pasos - 1) / 2, (N_pasos - 1) / 2])
+
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import axes3d
+
+fig = plt.figure()
+fig.clf()
+ax = fig.add_subplot(111, projection='3d')
+
+x = np.linspace(-1, 1, N_pasos)
+y = np.linspace(-1, 1, N_pasos)
+
+X, Y = np.meshgrid(x, y)
+
+ax.plot_surface(X, Y, phi_next, rstride=1, cstride=1)
+plt.show()
+plt.draw()
