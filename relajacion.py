@@ -8,6 +8,8 @@ Descripcion
 
 from __future__ import division
 import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import axes3d
 
 
 def muestra_phi(phi):
@@ -60,9 +62,6 @@ while counter < 800 and no_ha_convergido(phi, phi_next, tolerancia=1e-7):
 
 print("counter = {}".format(counter))
 print(phi[(N_pasos - 1) / 2, (N_pasos - 1) / 2])
-
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import axes3d
 
 fig = plt.figure()
 fig.clf()
