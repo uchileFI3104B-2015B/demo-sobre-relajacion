@@ -63,7 +63,7 @@ while counter < 800 and no_ha_convergido(phi, phi_next, tolerancia=1e-7):
 print("counter = {}".format(counter))
 print(phi[(N_pasos - 1) / 2, (N_pasos - 1) / 2])
 
-fig = plt.figure()
+fig = plt.figure(1)
 fig.clf()
 ax = fig.add_subplot(111, projection='3d')
 
@@ -73,5 +73,13 @@ y = np.linspace(-1, 1, N_pasos)
 X, Y = np.meshgrid(x, y)
 
 ax.plot_surface(X, Y, phi_next, rstride=1, cstride=1)
-plt.show()
+fig.show()
+
+fig2 = plt.figure(2)
+fig2.clf()
+ax2 = fig2.add_subplot(111)
+ax2.imshow(phi_next, origin='bottom', interpolation='nearest')
+ax2.contour(phi_next, origin='lower')
+fig2.show()
+
 plt.draw()
